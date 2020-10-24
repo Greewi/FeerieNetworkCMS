@@ -1,0 +1,12 @@
+{
+	"sitename" : "Feerie network",
+	"domain" : "feerie.net",
+	"template" : "feerie",
+	"map" : {
+		"/" : { "type" : "article", "template" : "article", "title" : "Accueil" },
+		"/contact" : { "type" : "article", "template" : "article", "title" : "Contact" },
+		"/contact/bidule" : { "type" : "article", "template" : "article", "title" : "Accueil" },
+		"/contact/truc" : { "type" : "article", "template" : "article", "title" : "Accueil" },
+		"/contact/machin" : { "type" : "article", "template" : "article", "title" : "Accueil" }
+	}
+}

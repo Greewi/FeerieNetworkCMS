@@ -1,0 +1,21 @@
+{
+  "name": "feerie-network-cms",
+  "version": "1.0.0",
+  "description": "Source dor the Feerie.net CMS",
+  "main": "index.php",
+  "scripts": {
+    "test": "sh scripts/test.sh",
+    "build": "sh scripts/build.sh",
+    "deploy": "sh scripts/deploy.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Greewi/FeerieNetworkCMS.git"
+  },
+  "author": "Sylvain « Greewi » Dumazet",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/Greewi/FeerieNetworkCMS/issues"
+  },
+  "homepage": "https://github.com/Greewi/FeerieNetworkCMS#readme"
+}

@@ -1,0 +1,7 @@
+vendor/
+/data/
+dist/
+distTest/
+conception/
+scripts/deploy.sh
+*.lock

@@ -1,0 +1,19 @@
+RewriteEngine On
+
+# Forcing HTTPS
+RewriteCond %{HTTPS} off 
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# URL Rewriting to index
+RewriteCond %{REQUEST_URI} !^/getRessource.php
+RewriteCond %{REQUEST_URI} !^/getPage.php
+RewriteCond %{REQUEST_URI} !^/js
+RewriteCond %{REQUEST_URI} !^/template
+RewriteRule ^([^\.]*)$ index.php?url=$1 [L,QSA]
+
+RewriteCond %{REQUEST_URI} !^/getRessource.php
+RewriteCond %{REQUEST_URI} !^/getPage.php
+RewriteCond %{REQUEST_URI} !^/js
+RewriteCond %{REQUEST_URI} !^/template
+RewriteCond %{REQUEST_URI} !^/index.php
+RewriteRule ^(.*\..*)$ getRessource.php?url=$1 [L,QSA]
