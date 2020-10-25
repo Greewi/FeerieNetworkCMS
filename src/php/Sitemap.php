@@ -7,12 +7,14 @@ class Sitemap {
 	private $rawmap;
 	private $title;
 	private $mainTemplate;
+	private $mainTheme;
 
 	function __construct($sitemapFile = "data/sitemap.json") {
 		$rawmap = self::loadMap($sitemapFile);
 		$this->rawmap = $rawmap;
 		$this->title = $rawmap["sitename"];
 		$this->mainTemplate = $rawmap["template"];
+		$this->mainTheme = $rawmap["theme"];
 	}
 
 	/**
@@ -36,6 +38,13 @@ class Sitemap {
 	 */
 	public function getMainTemplate() {
 		return $this->mainTemplate;
+	}
+
+	/**
+	 * @returns {string} the main theme name
+	 */
+	public function getMainTheme() {
+		return $this->mainTheme;
 	}
 
 	/**

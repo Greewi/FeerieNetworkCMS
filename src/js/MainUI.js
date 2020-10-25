@@ -28,5 +28,7 @@ export class MainUI {
 		this._navPanel.appendChild(element);
 	}
 
-
+	setTheme(theme) {
+		document.body.className = theme;
+	}
 }

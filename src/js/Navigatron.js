@@ -36,6 +36,7 @@ export class Navigatron {
 				await this._pageActuelle.close(this._mainUI, animation);
 			this._pageActuelle = page;
 			this.updateNavigation();
+			this.updateTheme(url);
 			if(this._pageActuelle)
 				await this._pageActuelle.open(this._mainUI, animation);
 			history.pushState("", "", url);
@@ -116,4 +117,14 @@ export class Navigatron {
 		this._mainUI.addNavigationElement(button);
 	}
 
+	updateTheme(url) {
+		while(url!=""){
+			if(this._sitemap.map[url] && this._sitemap.map[url].theme) {
+				this._mainUI.setTheme(this._sitemap.map[url].theme);
+				return;
+			}
+			url = url.replace(/(\/[^\/]*)$/gm, "");
+		}
+		this._mainUI.setTheme(this._sitemap.map["/"].theme);
+	}
 };

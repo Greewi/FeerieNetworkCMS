@@ -1,0 +1,89 @@
+.navButton {
+	box-sizing: border-box;
+	width: calc(100% - 20px);
+	height: 40px;
+	margin: 5px 10px 0px 10px;
+	padding: 0 10px 0 20px;
+	background: var(--navButtonBackgroundColor);
+	border: solid 1px var(--navButtonBorderColor);
+	border-radius: 10px;
+
+	display: grid;
+	grid-template-columns: 20px 1fr;
+	grid-template-rows: 1fr;
+	grid-template-areas: "icon text";
+	align-items: center;
+
+	cursor: pointer;
+
+	&_parent {
+	}
+
+	&_current {
+	}
+
+	&_child {
+		width: calc(100% - 40px);
+		margin: 5px 10px 0px 30px;
+	}
+
+	&_heading {
+		width: calc(100% - 40px);
+		margin: 5px 10px 0px 30px;
+	}
+
+	&_icon {
+		grid-area: icon;
+		color: var(--navButtonTextColor);
+		opacity: 0.5;
+		text-align: left;
+		font-size: 14pt;
+		font-weight: bolder;
+	}
+
+	&_text {
+		grid-area: text;
+		color: var(--navButtonTextColor);
+		text-align: left;
+		font-size: 10pt;
+		font-weight: bold;
+	}
+
+	@keyframes button_active {
+		from {
+			transform: scale(1.0);
+		}
+		50% {
+			transform: scale(0.95);
+		}
+		to {
+			transform: scale(1.0);
+		}
+	}
+	
+	&:active {
+		animation-name:button_active;
+		animation-duration: 200ms;
+	}
+}
+
+.licence {
+	display: grid;
+	grid-template-rows: min-content min-content;
+	grid-template-areas: "licence_logo" "licence_text";
+
+	&_logo {
+		grid-area: licence_logo;
+		justify-self: center;
+	}
+	&_text {
+		grid-area: licence_text;
+		text-align: left;
+		font-size: 7pt;
+		margin: 0;
+
+		a {
+			text-decoration: none;
+		}
+	}
+}

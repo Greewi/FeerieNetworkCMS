@@ -1,0 +1,88 @@
+body, html {
+	margin: 0;
+	padding: 0;
+}
+
+.mainUI {
+
+	&_background {
+		position: fixed;
+		z-index: 0;
+		width: 100vw;
+		height: 100vh;
+		top: 0;
+		left:0;
+		background: var(--generalBackground);
+		background-size: cover;
+	}
+
+	&_mainContainer {
+		position: absolute;
+		z-index: 10;
+		width: 100vw;
+		height: 100vh;
+		top: 0;
+		left:0;
+		display: grid;
+		grid-template-columns: 1fr 735px 15px 250px 1fr;
+		grid-template-rows: 150px auto;
+		grid-template-areas: ". title title title ." ". page . sidebar .";
+	}
+
+	&_title {
+		grid-area: title;
+		text-align: center;
+		align-self: center;
+		font-family: 'Teko',sans-serif;
+		font-weight: 700;
+		font-size: 5rem;
+		color: var(--titleTextColor);
+		text-shadow: 0 0 30px var(--titleGlowColor);
+	}
+
+	&_pageContainer {
+		grid-area: page;
+
+	}
+
+	&_footer {
+		grid-area: page;
+		display:none;
+	}
+
+	&_sidePanel {
+		grid-area: sidebar;
+		display: grid;
+		grid-template-rows: auto min-content;
+
+		position:fixed;
+		top: 150px;
+		left: calc(50vw + 250px);
+		box-sizing: border-box;
+		width : 250px;
+		height: calc(100vh - 200px);
+		padding: 20px 10px 10px 10px;
+		border: solid 5px var(--pageBorderColor);
+		border-radius: 5px;
+		background: var(--pageBackgroundColor);
+		color : var(--pageTextColor);
+	}
+
+	&_navPanel {
+		grid-row: 1;
+	}
+
+	&_legalPanel {
+		grid-row: 2;
+	}
+
+	&_popupContainer {
+		display: none;
+	}
+}
+
+.page {
+	width : 100%;
+	height: 100%;
+	background: #FFF;
+}

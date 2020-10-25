@@ -14,7 +14,7 @@ $map = new Sitemap();
 	<title><?=$map->getTitle();?></title>
 	<link rel="stylesheet" href="<?="/templates/".$map->getMainTemplate()."/style.css"?>" />
 </head>
-<body>
+<body class="<?=$map->getMainTheme();?>">
 <?php
 	require("templates/".$map->getMainTemplate()."/mainUI.html");
 ?>

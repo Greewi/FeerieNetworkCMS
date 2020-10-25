@@ -87,7 +87,7 @@ class Markdown {
 		$line = preg_replace("/!\[([^\[]+)]\(([^(]+)\)/m", $this->imgPattern, $line);
 		$line = preg_replace("/\[([^\[]+)]\((http[^(]+)\)/m",'<a class="external" href="$2">$1</a>', $line);
 		$line = preg_replace("/\[([^\[]+)]\(([^(]+)\)/m", $this->linkPattern, $line);
-		$line = preg_replace("/\*\*([^ ][.^\*]*[^ ]|[^*])\*\*/m",'<em>$1</em>', $line);
+		$line = preg_replace("/\*\*([^ ][^\*]*[^ ]|[^*])\*\*/m",'<em>$1</em>', $line);
 		$line = preg_replace("/\*([^ ][^\*]*[^ ]|[^*])\*/m",'<cite>$1</cite>', $line);
 		return $line;
 	}

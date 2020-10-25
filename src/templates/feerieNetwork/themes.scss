@@ -1,0 +1,171 @@
+body {
+	/* General colors */
+	--generalBackground: url(images/bg_earth.jpg) #000;
+	--titleTextColor: rgba(255, 255, 255, 0.900);
+	--titleGlowColor: #30bee5;
+	--buttonBackgroundColor: linear-gradient(160deg, #30bee5 0%,#2871a1 100%);
+	--buttonTextColor: rgb(255, 255, 255);
+	--badButtonBackgroundColor: linear-gradient(160deg, #d12c2c 0%,#7c1b1b 100%);
+	--badButtonTextColor: rgb(255, 255, 255);
+
+	/* page */
+	--pageBackgroundColor: rgba(255, 255, 255, 0.800);
+	--pageTextColor: rgb(36, 36, 36);
+	--pageBorderColor: rgba(29, 71, 99, 0.329);
+	--h1BackgroundColor: linear-gradient(160deg, #547e99 0%,#003b59 100%);
+	--h1TextColor: rgb(255, 255, 255);
+	--h2TextColor: rgb(29, 71, 99);
+	--h2BorderColor: rgb(29, 71, 99);
+	--quoteTextColor: rgb(36, 36, 36);
+	--quoteBackgroundColor: rgba(29, 71, 99, 0.329);
+	--asideBorderColor: rgb(29, 71, 99);
+	--asideBackgroundColor: rgba(255, 255, 255, 0.418);
+
+	/* nav */
+	--navButtonBackgroundColor: linear-gradient(160deg, #ffffff 0%,#dcf1ff 100%);
+	--navButtonBorderColor: rgb(17, 55, 80);
+	--navButtonTextColor: rgb(17, 55, 80);
+
+	&.sol {
+		color : #fff;
+
+		/* General colors */
+		--generalBackground: url(images/bg_sol.jpg) #000;
+		--titleTextColor: rgba(255, 255, 255, 0.900);
+		--titleGlowColor: #b7b194;
+		--buttonBackgroundColor: linear-gradient(160deg, #b7b194 0%,#666666 100%);
+		--buttonTextColor: rgb(255, 255, 255);
+		--badButtonBackgroundColor: linear-gradient(160deg, #d12c2c 0%,#7c1b1b 100%);
+		--badButtonTextColor: rgb(255, 255, 255);
+
+		/* page */
+		--pageBackgroundColor: rgba(255, 255, 255, 0.800);
+		--pageTextColor: rgb(36, 36, 36);
+		--pageBorderColor: rgba(85, 85, 85, 0.329);
+		--h1BackgroundColor: linear-gradient(160deg, #63574d 0%,#2b2b2b 100%);
+		--h1TextColor: rgb(255, 255, 255);
+		--h2TextColor: rgb(85, 85, 85);
+		--h2BorderColor: rgb(85, 85, 85);
+		--quoteTextColor: rgb(36, 36, 36);
+		--quoteBackgroundColor: rgba(85, 85, 85, 0.329);
+		--asideBorderColor: rgb(85, 85, 85);
+		--asideBackgroundColor: rgba(255, 255, 255, 0.418);
+
+		/* nav */
+		--navButtonBackgroundColor: linear-gradient(160deg, #ffffff 0%,#dadada 100%);
+		--navButtonBorderColor: #3b3b3b;
+		--navButtonTextColor: #3b3b3b;
+	}
+	&.earth {
+		/* General colors */
+		--generalBackground: url(images/bg_earth.jpg) #000;
+		--titleTextColor: rgba(255, 255, 255, 0.900);
+		--titleGlowColor: #30bee5;
+		--buttonBackgroundColor: linear-gradient(160deg, #30bee5 0%,#2871a1 100%);
+		--buttonTextColor: rgb(255, 255, 255);
+		--badButtonBackgroundColor: linear-gradient(160deg, #d12c2c 0%,#7c1b1b 100%);
+		--badButtonTextColor: rgb(255, 255, 255);
+
+		/* page */
+		--pageBackgroundColor: rgba(255, 255, 255, 0.800);
+		--pageTextColor: rgb(36, 36, 36);
+		--pageBorderColor: rgba(29, 71, 99, 0.329);
+		--h1BackgroundColor: linear-gradient(160deg, #547e99 0%,#003b59 100%);
+		--h1TextColor: rgb(255, 255, 255);
+		--h2TextColor: rgb(29, 71, 99);
+		--h2BorderColor: rgb(29, 71, 99);
+		--quoteTextColor: rgb(36, 36, 36);
+		--quoteBackgroundColor: rgba(29, 71, 99, 0.329);
+		--asideBorderColor: rgb(29, 71, 99);
+		--asideBackgroundColor: rgba(255, 255, 255, 0.418);
+
+		/* nav */
+		--navButtonBackgroundColor: linear-gradient(160deg, #ffffff 0%,#dcf1ff 100%);
+		--navButtonBorderColor: rgb(17, 55, 80);
+		--navButtonTextColor: rgb(17, 55, 80);
+	}
+	&.mars {
+		/* General colors */
+		--generalBackground: url(images/bg_mars.jpg) #000;
+		--titleTextColor: rgba(255, 255, 255, 0.900);
+		--titleGlowColor: #937352;
+		--buttonBackgroundColor: linear-gradient(160deg, #937352 0%,#724328 100%);
+		--buttonTextColor: rgb(255, 255, 255);
+		--badButtonBackgroundColor: linear-gradient(160deg, #d12c2c 0%,#7c1b1b 100%);
+		--badButtonTextColor: rgb(255, 255, 255);
+
+		/* page */
+		--pageBackgroundColor: rgba(255, 255, 255, 0.800);
+		--pageTextColor: rgb(36, 36, 36);
+		--pageBorderColor: rgba(99, 71, 29, 0.329);
+		--h1BackgroundColor: linear-gradient(160deg, #6d553d 0%,#542e1e 100%);
+		--h1TextColor: rgb(255, 255, 255);
+		--h2TextColor: rgb(99, 71, 29);
+		--h2BorderColor: rgb(99, 71, 29);
+		--quoteTextColor: rgb(36, 36, 36);
+		--quoteBackgroundColor: rgba(99, 71, 29, 0.329);
+		--asideBorderColor: rgb(99, 71, 29);
+		--asideBackgroundColor: rgba(255, 255, 255, 0.418);
+
+		/* nav */
+		--navButtonBackgroundColor: linear-gradient(160deg, #ffffff 0%,rgb(255, 234, 212) 100%);
+		--navButtonBorderColor: rgb(58, 50, 41);
+		--navButtonTextColor: rgb(58, 50, 41);
+	}
+	&.jupiter {
+		/* General colors */
+		--generalBackground: url(images/bg_jupiter.jpg) #000;
+		--titleTextColor: rgba(255, 255, 255, 0.900);
+		--titleGlowColor: #937352;
+		--buttonBackgroundColor: linear-gradient(160deg, #937352 0%,#724328 100%);
+		--buttonTextColor: rgb(255, 255, 255);
+		--badButtonBackgroundColor: linear-gradient(160deg, #d12c2c 0%,#7c1b1b 100%);
+		--badButtonTextColor: rgb(255, 255, 255);
+
+		/* page */
+		--pageBackgroundColor: rgba(255, 255, 255, 0.800);
+		--pageTextColor: rgb(36, 36, 36);
+		--pageBorderColor: rgba(99, 71, 29, 0.329);
+		--h1BackgroundColor: linear-gradient(160deg, #6d553d 0%,#542e1e 100%);
+		--h1TextColor: rgb(255, 255, 255);
+		--h2TextColor: rgb(99, 71, 29);
+		--h2BorderColor: rgb(99, 71, 29);
+		--quoteTextColor: rgb(36, 36, 36);
+		--quoteBackgroundColor: rgba(99, 71, 29, 0.329);
+		--asideBorderColor: rgb(99, 71, 29);
+		--asideBackgroundColor: rgba(255, 255, 255, 0.418);
+
+		/* nav */
+		--navButtonBackgroundColor: linear-gradient(160deg, #ffffff 0%,rgb(255, 234, 212) 100%);
+		--navButtonBorderColor: rgb(58, 50, 41);
+		--navButtonTextColor: rgb(58, 50, 41);
+	}
+	&.saturn {
+		/* General colors */
+		--generalBackground: url(images/bg_saturn.jpg) #000;
+		--titleTextColor: rgba(255, 255, 255, 0.900);
+		--titleGlowColor: #937352;
+		--buttonBackgroundColor: linear-gradient(160deg, #937352 0%,#724328 100%);
+		--buttonTextColor: rgb(255, 255, 255);
+		--badButtonBackgroundColor: linear-gradient(160deg, #d12c2c 0%,#7c1b1b 100%);
+		--badButtonTextColor: rgb(255, 255, 255);
+
+		/* page */
+		--pageBackgroundColor: rgba(255, 255, 255, 0.800);
+		--pageTextColor: rgb(36, 36, 36);
+		--pageBorderColor: rgba(85, 85, 85, 0.329);
+		--h1BackgroundColor: linear-gradient(160deg, #63574d 0%,#2b2b2b 100%);
+		--h1TextColor: rgb(255, 255, 255);
+		--h2TextColor: rgb(85, 85, 85);
+		--h2BorderColor: rgb(85, 85, 85);
+		--quoteTextColor: rgb(36, 36, 36);
+		--quoteBackgroundColor: rgba(85, 85, 85, 0.329);
+		--asideBorderColor: rgb(85, 85, 85);
+		--asideBackgroundColor: rgba(255, 255, 255, 0.418);
+
+		/* nav */
+		--navButtonBackgroundColor: linear-gradient(160deg, #ffffff 0%,#dadada 100%);
+		--navButtonBorderColor: #3b3b3b;
+		--navButtonTextColor: #3b3b3b;
+	}
+}
