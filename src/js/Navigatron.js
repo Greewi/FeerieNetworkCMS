@@ -7,6 +7,7 @@ export class Navigatron {
 		this._mainUI = mainUI;
 		this._pageActuelle = null;
 		this._lockInteraction = false;
+		window.openLink = (url) => this.openLink(url, "CHILD");
 	}
 
 	async initializeCurrentURL() {
