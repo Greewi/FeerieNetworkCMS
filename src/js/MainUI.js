@@ -6,6 +6,9 @@ export class MainUI {
 		this._title = document.getElementById("mainUI_title");
 		this._pageContainer = document.getElementById("mainUI_pageContainer");
 		this._navPanel = document.getElementById("mainUI_navPanel");
+		this._sidePanel = document.getElementById("mainUI_sidePanel");
+		this._sidePanelOpenButton = document.getElementById("button_openSidePanel");
+		this._sidePanelOpenButton.onclick = () => this._sidePanel.classList.toggle("mainUI_sidePanel_opened");
 	}
 
 	setTitle(title) {

@@ -4,12 +4,12 @@ use PHPUnit\Framework\TestCase;
 
 final class MarkdownTest extends TestCase {
 	public function testConvertInlineMarkup(){
-		$md = new Markdown('<a href="/root/$2">$1</a>', '<img src="/root/$2" alt="$1"/>');
+		$md = new Markdown('/root/$2', '/root/$2');
 		$this->assertEquals('&amp;&lt;&gt;<em>em</em> <cite>cite</cite> **em <cite>sd</cite> ds** <img src="/root/b" alt="a"/> <a href="/root/b">a</a> <img src="/root/http://b" alt="a"/> <a class="external" href="http://b">a</a>', $md->convertInlineMarkup('&<>**em** *cite* **em *sd* ds** ![a](b) [a](b) ![a](http://b) [a](http://b)'));
 	}
 
 	public function testConvert(){
-		$md = new Markdown('<a href="/$2">$1</a>', '<img src="/$2" alt="$1"/>');
+		$md = new Markdown('/$2', '/$2');
 		$source = "
 # Titre
 > « The legend »

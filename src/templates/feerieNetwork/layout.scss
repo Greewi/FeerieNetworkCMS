@@ -36,15 +36,20 @@ body, html {
 		font-family: 'Teko',sans-serif;
 		font-weight: 700;
 		font-size: 5rem;
+		line-height: 4.5rem;
 		color: var(--titleTextColor);
 		text-shadow: 0 0 30px var(--titleGlowColor);
 	}
 
 	&_pageContainer {
 		grid-area: page;
-
 	}
 
+	&_header {
+		grid-area: page;
+		display:none;
+	}
+	
 	&_footer {
 		grid-area: page;
 		display:none;
@@ -53,7 +58,8 @@ body, html {
 	&_sidePanel {
 		grid-area: sidebar;
 		display: grid;
-		grid-template-rows: auto min-content;
+		grid-template-rows: auto 10px min-content;
+		grid-template-areas: "navpanel" "." "legalpanel";
 
 		position:fixed;
 		top: 150px;
@@ -70,11 +76,13 @@ body, html {
 	}
 
 	&_navPanel {
-		grid-row: 1;
+		grid-row: navpanel;
+		height: 100%;
+		overflow-y: auto;
 	}
 
 	&_legalPanel {
-		grid-row: 2;
+		grid-row: legalpanel;
 	}
 
 	&_popupContainer {

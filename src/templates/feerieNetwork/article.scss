@@ -20,6 +20,8 @@ body {
 	h1 {
 		margin: 0 -10px 1rem -10px;
 		padding: 0.5rem;
+		height: 2.5rem;
+		box-sizing: content-box;
 		background: var(--h1BackgroundColor);
 		color: var(--h1TextColor);
 		font-family: 'Teko', sans-serif;
@@ -100,13 +102,41 @@ body {
 
 	img {
 		max-width: 100%;
+
+		border-radius: 3px;
+
+		&.image_center {
+			justify-self: center;
+		}
+		&.image_left {
+			float: left;
+			margin-right: 10px;
+		}
+		&.image_right {
+			float: right;
+			margin-left: 10px;
+		}
+	}
+	
+	a {
+		text-decoration: none;
+		color: var(--linkTextColor);
+		transition-property: text-shadow,color;
+		transition-duration: 400ms;
+		
+		&:hover {
+			filter: brightness(1.2) saturate(0.7) contrast(1.2);
+			color: var(--linkTextColor);
+			text-shadow: 0 0 10px var(--linkTextColor);
+		}
+
+		&.external::after {
+			content : "🌎";
+			opacity : 0.4;
+			font-size: 0.7rem;
+		}
 	}
 
-	a.external::after {
-		content : "🌎";
-		opacity : 0.4;
-		font-size: 0.7rem;
-	}
 }
 
 .button {
@@ -133,7 +163,9 @@ body {
 
 	&_navButton {
 		width:100%;
+		margin-top: 1rem;
 		margin-bottom: 1rem;
+		display: block;
 	}
 
 	&:hover{

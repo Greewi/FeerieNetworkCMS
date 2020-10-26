@@ -2,11 +2,12 @@
 	"sitename" : "Feerie network",
 	"domain" : "feerie.net",
 	"template" : "feerie",
+	"theme" : "sol",
 	"map" : {
-		"/" : { "type" : "article", "template" : "article", "title" : "Accueil" },
-		"/contact" : { "type" : "article", "template" : "article", "title" : "Contact" },
-		"/contact/bidule" : { "type" : "article", "template" : "article", "title" : "Accueil" },
-		"/contact/truc" : { "type" : "article", "template" : "article", "title" : "Accueil" },
-		"/contact/machin" : { "type" : "article", "template" : "article", "title" : "Accueil" }
+		"/" : { "type" : "article", "template" : "article", "theme" : "sol", "title" : "Accueil" },
+		"/contact" : { "type" : "article", "template" : "article", "theme" : "sol", "title" : "Contact" },
+		"/contact/bidule" : { "type" : "article", "template" : "article", "theme" : "sol", "title" : "Accueil" },
+		"/contact/truc" : { "type" : "article", "template" : "article", "theme" : "sol", "title" : "Accueil" },
+		"/contact/machin" : { "type" : "article", "template" : "article", "theme" : "sol", "title" : "Accueil" }
 	}
 }

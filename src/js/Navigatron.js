@@ -7,6 +7,17 @@ export class Navigatron {
 		this._mainUI = mainUI;
 		this._pageActuelle = null;
 		this._lockInteraction = false;
+		window.onpopstate = (event) => {
+			if(event.state==null)
+				return;
+			let url = event.state.url;
+			let animation = event.state.animation;
+			if(animation=="CHILD")
+				animation = "PARENT";
+			else if(animation=="PARENT")
+				animation = "CHILD";
+			this.openLink(url, animation);
+		};
 		window.openLink = (url) => this.openLink(url, "CHILD");
 	}
 
@@ -35,7 +46,7 @@ export class Navigatron {
 			this._updateTheme(url);
 			if(this._pageActuelle)
 				await this._pageActuelle.open(this._mainUI, animation);
-			history.pushState("", "", url);
+			history.pushState({url:url, animation:"INIT"}, "", url);
 		} finally {
 			this._lockInteraction = false;
 		}

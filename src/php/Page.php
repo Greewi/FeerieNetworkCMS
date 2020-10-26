@@ -80,7 +80,7 @@ class Page {
 	private function regenerateCache() {
 		if(!file_exists(preg_replace('/[^\/]+$/', '', $this->cachePath)))
 			mkdir(preg_replace('/[^\/]+$/', '', $this->cachePath), 0777, true);
-		$md = new Markdown('<a href="$2">$1</a>', '<img src="/getRessource.php?url='.$this->folderPath.'$2" alt="$1"/>');
+		$md = new Markdown('$2', '/getRessource.php?url='.$this->folderPath.'$2');
 		$md->convertFile($this->sourcePath, $this->cachePath);
 	}
 }

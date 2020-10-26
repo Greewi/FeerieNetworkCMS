@@ -4,16 +4,16 @@
  * This class handles md/html conversions.
  */
 class Markdown {
-	private $linkPattern;
-	private $imgPattern;
+	private $linkUrlPattern;
+	private $imgUrlPattern;
 
 	/**
-	 * @param {String} $linkPattern a string containing the link conversion pattern. The $2 substring will be replaced by the link url and $1 by the link text.
-	 * @param {String} $imgPattern a string containing the image conversion pattern. The $2 substring will be replaced by the image url and $1 by the alternate text.
+	 * @param {String} $linkUrlPattern a string containing the link conversion pattern. The $2 substring will be replaced by the link url and $1 by the link text.
+	 * @param {String} $imgUrlPattern a string containing the image conversion pattern. The $2 substring will be replaced by the image url and $1 by the alternate text.
 	 */
-	public function __construct($linkPattern, $imgPattern) {
-		$this->linkPattern = $linkPattern;
-		$this->imgPattern = $imgPattern;
+	public function __construct($linkUrlPattern, $imgUrlPattern) {
+		$this->linkUrlPattern = $linkUrlPattern;
+		$this->imgUrlPattern = $imgUrlPattern;
 	}
 
 	/**
@@ -84,9 +84,12 @@ class Markdown {
 		$line = str_replace("&", "&amp;", $line);
 		$line = str_replace("<", "&lt;", $line);
 		$line = str_replace(">", "&gt;", $line);
-		$line = preg_replace("/!\[([^\[]+)]\(([^(]+)\)/m", $this->imgPattern, $line);
+		$line = preg_replace("/!\[ ([^\[]+) ]\(([^(]+)\)/m", '<img src="'.$this->imgUrlPattern.'" alt="$1" class="image_center"/>' , $line);
+		$line = preg_replace("/!\[([^\[]+) ]\(([^(]+)\)/m", '<img src="'.$this->imgUrlPattern.'" alt="$1" class="image_left"/>' , $line);
+		$line = preg_replace("/!\[ ([^\[]+)]\(([^(]+)\)/m", '<img src="'.$this->imgUrlPattern.'" alt="$1" class="image_right"/>' , $line);
+		$line = preg_replace("/!\[([^\[]+)]\(([^(]+)\)/m", '<img src="'.$this->imgUrlPattern.'" alt="$1"/>' , $line);
 		$line = preg_replace("/\[([^\[]+)]\((http[^(]+)\)/m",'<a class="external" href="$2">$1</a>', $line);
-		$line = preg_replace("/\[([^\[]+)]\(([^(]+)\)/m", $this->linkPattern, $line);
+		$line = preg_replace("/\[([^\[]+)]\(([^(]+)\)/m", '<a href="'.$this->linkUrlPattern.'">$1</a>', $line);
 		$line = preg_replace("/\*\*([^ ][^\*]*[^ ]|[^*])\*\*/m",'<em>$1</em>', $line);
 		$line = preg_replace("/\*([^ ][^\*]*[^ ]|[^*])\*/m",'<cite>$1</cite>', $line);
 		return $line;
