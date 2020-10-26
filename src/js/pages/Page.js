@@ -22,6 +22,10 @@ export class Page {
 		return [];
 	}
 
+	appendToCButton(button) {
+		this._element.appendChild(button);
+	}
+
 	async open(mainUI, animation) {
 		mainUI.setTitle(this._data.title);
 		mainUI.addPageElement(this._element);

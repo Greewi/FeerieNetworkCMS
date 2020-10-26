@@ -26,17 +26,13 @@ export class Navigatron {
 		try {
 			let response = await fetch("/getPage.php?url="+url)
 			let data = await response.json();
-			let page = null;
-			if(data.type=="article")
-				page = new Article(url, data);
-			else if(data.type=="error")
-				page = new ErrorPage(url, data);
+			let page = this._createPage(url, data);
 
 			if(this._pageActuelle)
 				await this._pageActuelle.close(this._mainUI, animation);
 			this._pageActuelle = page;
-			this.updateNavigation();
-			this.updateTheme(url);
+			this._updateNavigation();
+			this._updateTheme(url);
 			if(this._pageActuelle)
 				await this._pageActuelle.open(this._mainUI, animation);
 			history.pushState("", "", url);
@@ -45,7 +41,16 @@ export class Navigatron {
 		}
 	}
 
-	updateNavigation() {
+	_createPage(url, data) {
+		let page = null;
+		if(data.type=="article")
+			page = new Article(url, data);
+		else if(data.type=="error")
+			page = new ErrorPage(url, data);
+		return page;
+	}
+
+	_updateNavigation() {
 		this._mainUI.clearNavigation();
 		if(!this._pageActuelle) {
 			this._addNavElement(this._sitemap.map['/'].title, "navButton_current", "#", '/', "INIT");
@@ -64,9 +69,11 @@ export class Navigatron {
 		let regexp = currentUrl!="/" 
 			? new RegExp('^'+currentUrl.replace('/','\\/') +'\/[^\/]+$') 
 			: new RegExp('^\/[^\/]+$') ;
-		for(let url in this._sitemap.map)
-			if(url.match(regexp))
-				this._addChildPageNavElement(url);
+		for(let url in this._sitemap.map) {
+			if(url.match(regexp)) {
+				this._addChildPageNavElement(url, this._pageActuelle);
+			}
+		}
 
 		// Page headings
 		for(let heading of this._pageActuelle.getHeadings())
@@ -90,9 +97,16 @@ export class Navigatron {
 		this._addNavElement(this._pageActuelle.getTitle(), "navButton_current", "#", this._pageActuelle.getUrl()+"#TOP", "SAMEPAGE");
 	}
 
-	_addChildPageNavElement(url) {
+	_addChildPageNavElement(url, page) {
 		if(this._sitemap.map[url])
 			this._addNavElement(this._sitemap.map[url].title, "navButton_child", ">", url, "CHILD");
+		if(page) {
+			let tocButton = document.createElement("button");
+			tocButton.className = "button button_navButton";
+			tocButton.innerHTML = this._sitemap.map[url].title;
+			tocButton.onclick = () => this.openLink(url, "CHILD");
+			page.appendToCButton(tocButton);
+		}
 	}
 
 	_addHeadingNavElement(title, anchor) {
@@ -117,7 +131,7 @@ export class Navigatron {
 		this._mainUI.addNavigationElement(button);
 	}
 
-	updateTheme(url) {
+	_updateTheme(url) {
 		while(url!=""){
 			if(this._sitemap.map[url] && this._sitemap.map[url].theme) {
 				this._mainUI.setTheme(this._sitemap.map[url].theme);
