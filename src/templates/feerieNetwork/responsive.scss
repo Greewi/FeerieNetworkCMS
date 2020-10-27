@@ -8,16 +8,34 @@
 
 		&_sidePanel {
 			top : calc(150px + 3.5rem);
-			left : calc(50vw - 368px);
+			right : calc(50vw - 376px);
 			bottom: -5px;
 			height: auto;
 
-			transform: translateX(-100%);
+			transform: translateX(100%);
 			opacity: 0;
 			transition: transform 200ms ease-out 0ms, opacity 200ms linear 0ms;
 
 			&_opened {
 				transform: translateX(0);
+				opacity: 1;
+			}
+		}
+
+		&_overlaySidePanel {
+			position: absolute;
+			top:0;
+			bottom:0;
+			left:0;
+			right:0;
+			background: rgba(0, 0, 0, 0.6);
+
+			pointer-events: none;
+			opacity: 0;
+			transition: opacity 200ms linear 0ms;
+
+			&_opened {
+				pointer-events: all;
 				opacity: 1;
 			}
 		}
@@ -33,6 +51,7 @@
 		width : 48px;
 		height: 48px;
 		margin: 10px;
+		justify-self: right;
 	}
 
 	.button_icon_openSidePanel {
@@ -45,6 +64,11 @@
 
 @media screen and (max-width: 750px) {
 	.mainUI {
+
+		&_title {
+			display: none;
+		}
+
 		&_mainContainer {
 			grid-template-columns: auto;
 			grid-template-rows: 0px auto;
@@ -53,12 +77,12 @@
 
 		&_sidePanel {
 			top : calc(3.5rem - 5px);
-			left : -5px;
+			right : -5px;
 			bottom: -5px;
+			width: 80vw;
 			height: auto;
 
-
-			transform: translateX(-100%);
+			transform: translateX(100%);
 			opacity: 0;
 			transition: transform 200ms ease-out 0ms, opacity 200ms linear 0ms;
 
@@ -69,8 +93,22 @@
 		}
 
 		&_header {
+			position: fixed;
+			top: 0;
+			left: 0;
 			display: grid;
 			height: 3.5rem;
+			width: 100%;
+		}
+	}
+
+	.page {
+		h1 {
+			z-index: var(--zIndexHeader);
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
 		}
 	}
 
@@ -79,6 +117,7 @@
 		width : 48px;
 		height: 48px;
 		margin: 5px;
+		justify-self: right;
 	}
 
 	.button_icon_openSidePanel {

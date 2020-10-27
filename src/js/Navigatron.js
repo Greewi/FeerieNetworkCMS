@@ -1,35 +1,46 @@
 import { Article } from "./pages/Article";
 import { ErrorPage } from "./pages/Error";
 
+/**
+ * This class is responsible for all navigation operations
+ * (including loading page and generating navigation buttons)
+ */
 export class Navigatron {
+	/**
+	 * 
+	 * @param {Object} sitemap the sitemap data of the site
+	 * @param {MainUI} mainUI the main UI
+	 */
 	constructor(sitemap, mainUI) {
 		this._sitemap = sitemap;
 		this._mainUI = mainUI;
 		this._pageActuelle = null;
 		this._lockInteraction = false;
-		window.onpopstate = (event) => {
-			if(event.state==null)
-				return;
-			let url = event.state.url;
-			let animation = event.state.animation;
-			if(animation=="CHILD")
-				animation = "PARENT";
-			else if(animation=="PARENT")
-				animation = "CHILD";
-			this.openLink(url, animation);
-		};
+		window.onpopstate = (event) => this._onHistoryPopState(event);
 		window.openLink = (url) => this.openLink(url, "CHILD");
 	}
 
+	/**
+	 * Load the initial page by using the browser url
+	 */
 	async initializeCurrentURL() {
 		this.openLink(window.location.pathname, "INIT");
 	}
 
-	async openLink(url, animation) {
+	/**
+	 * Open an internal link
+	 * @param {string} url the url to open
+	 * @param {string} animation the closing/opening animation to play
+	 * @param {boolean} pushState if set to true the new url will be push into the history (default to true).
+	 */
+	async openLink(url, animation, pushState = true) {
 		if(this._lockInteraction)
 			return;
 		if(url.includes("#")) {
-			document.location.hash = "#"+url.split("#")[1];
+			if(url.includes("#TOP"))
+				document.documentElement.scrollTop = 0;
+			else
+				document.location.hash = "#"+url.split("#")[1];
 			return;
 		}
 
@@ -41,17 +52,44 @@ export class Navigatron {
 
 			if(this._pageActuelle)
 				await this._pageActuelle.close(this._mainUI, animation);
+			document.documentElement.scrollTop = 0;
 			this._pageActuelle = page;
 			this._updateNavigation();
 			this._updateTheme(url);
 			if(this._pageActuelle)
 				await this._pageActuelle.open(this._mainUI, animation);
-			history.pushState({url:url, animation:"INIT"}, "", url);
+			if(pushState)
+				history.pushState({url:url, animation:"INIT"}, "", url);
 		} finally {
 			this._lockInteraction = false;
 		}
 	}
 
+	/**
+	 * Handle the page change from the browser (mainly the back button)
+	 * @param {*} event 
+	 */
+	_onHistoryPopState(event) {
+		if(event.state==null)
+			return;
+		let url = event.state.url;
+		let animation = event.state.animation;
+		if(animation=="CHILD")
+			animation = "PARENT";
+		else if(animation=="PARENT")
+			animation = "CHILD";
+		else if(animation=="LEFT")
+			animation = "RIGHT";
+		else if(animation=="RIGHT")
+			animation = "LEFT";
+		this.openLink(url, animation, false);
+	}
+
+	/**
+	 * Create a page
+	 * @param {string} url the url of the page
+	 * @param {object} data the data of the page
+	 */
 	_createPage(url, data) {
 		let page = null;
 		if(data.type=="article")
@@ -61,6 +99,9 @@ export class Navigatron {
 		return page;
 	}
 
+	/**
+	 * Update the navigation ui
+	 */
 	_updateNavigation() {
 		this._mainUI.clearNavigation();
 		if(!this._pageActuelle) {
@@ -111,7 +152,7 @@ export class Navigatron {
 	_addChildPageNavElement(url, page) {
 		if(this._sitemap.map[url])
 			this._addNavElement(this._sitemap.map[url].title, "navButton_child", ">", url, "CHILD");
-		if(page) {
+		if(page && !this._sitemap.map[page.getUrl()].notoc) {
 			let tocButton = document.createElement("button");
 			tocButton.className = "button button_navButton";
 			tocButton.innerHTML = this._sitemap.map[url].title;
@@ -142,6 +183,10 @@ export class Navigatron {
 		this._mainUI.addNavigationElement(button);
 	}
 
+	/**
+	 * Update the current theme to reflect the current url
+	 * @param {string} url the url
+	 */
 	_updateTheme(url) {
 		while(url!=""){
 			if(this._sitemap.map[url] && this._sitemap.map[url].theme) {

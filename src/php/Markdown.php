@@ -84,12 +84,12 @@ class Markdown {
 		$line = str_replace("&", "&amp;", $line);
 		$line = str_replace("<", "&lt;", $line);
 		$line = str_replace(">", "&gt;", $line);
-		$line = preg_replace("/!\[ ([^\[]+) ]\(([^(]+)\)/m", '<img src="'.$this->imgUrlPattern.'" alt="$1" class="image_center"/>' , $line);
-		$line = preg_replace("/!\[([^\[]+) ]\(([^(]+)\)/m", '<img src="'.$this->imgUrlPattern.'" alt="$1" class="image_left"/>' , $line);
-		$line = preg_replace("/!\[ ([^\[]+)]\(([^(]+)\)/m", '<img src="'.$this->imgUrlPattern.'" alt="$1" class="image_right"/>' , $line);
-		$line = preg_replace("/!\[([^\[]+)]\(([^(]+)\)/m", '<img src="'.$this->imgUrlPattern.'" alt="$1"/>' , $line);
-		$line = preg_replace("/\[([^\[]+)]\((http[^(]+)\)/m",'<a class="external" href="$2">$1</a>', $line);
-		$line = preg_replace("/\[([^\[]+)]\(([^(]+)\)/m", '<a href="'.$this->linkUrlPattern.'">$1</a>', $line);
+		$line = preg_replace("/!\[ ([^\[\]]+) ]\(([^(]+)\)/m", '<img src="'.$this->imgUrlPattern.'" alt="$1" class="image_center"/>' , $line);
+		$line = preg_replace("/!\[([^\[\]]+) ]\(([^(]+)\)/m", '<img src="'.$this->imgUrlPattern.'" alt="$1" class="image_left"/>' , $line);
+		$line = preg_replace("/!\[ ([^\[\]]+)]\(([^(]+)\)/m", '<img src="'.$this->imgUrlPattern.'" alt="$1" class="image_right"/>' , $line);
+		$line = preg_replace("/!\[([^\[\]]+)]\(([^(]+)\)/m", '<img src="'.$this->imgUrlPattern.'" alt="$1"/>' , $line);
+		$line = preg_replace("/\[([^\[\]]+)]\((http[^(]+)\)/m",'<a class="external" href="$2">$1</a>', $line);
+		$line = preg_replace("/\[([^\[\]]+)]\(([^(]+)\)/m", '<a href="'.$this->linkUrlPattern.'">$1</a>', $line);
 		$line = preg_replace("/\*\*([^ ][^\*]*[^ ]|[^*])\*\*/m",'<em>$1</em>', $line);
 		$line = preg_replace("/\*([^ ][^\*]*[^ ]|[^*])\*/m",'<cite>$1</cite>', $line);
 		return $line;

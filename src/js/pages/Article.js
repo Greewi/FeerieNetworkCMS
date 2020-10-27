@@ -31,6 +31,9 @@ export class Article extends Page {
 					event.preventDefault();
 				}
 		}
+		// Fixing linked image styles
+		for(let img of this.getElement().querySelectorAll("a > img"))
+			img.parentElement.classList.add("media");
 	}
 
 	getHeadings() {

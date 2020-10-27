@@ -1,4 +1,12 @@
 body {
+	/* z-index */
+	--zIndexBackground: 10;
+	--zIndexTitle: 20;
+	--zIndexPage: 30;
+	--zIndexHeader: 40;
+	--zIndexFooter: 50;
+	--zIndexSidePanel: 60;
+
 	/* General colors */
 	--generalBackground: url(images/bg_earth.jpg) #000;
 	--titleTextColor: rgba(255, 255, 255, 0.900);

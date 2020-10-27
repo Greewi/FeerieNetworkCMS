@@ -7,8 +7,9 @@ body, html {
 
 	&_background {
 		position: fixed;
-		z-index: 0;
-		width: 100vw;
+		z-index: var(--zIndexBackround);
+		width:100%;
+		max-width: 100vw;
 		height: 100vh;
 		top: 0;
 		left:0;
@@ -19,7 +20,8 @@ body, html {
 	&_mainContainer {
 		position: absolute;
 		z-index: 10;
-		width: 100vw;
+		width: 100%;
+		max-width: 100vw;
 		height: 100vh;
 		top: 0;
 		left:0;
@@ -31,6 +33,7 @@ body, html {
 
 	&_title {
 		grid-area: title;
+		z-index: var(--zIndexTitle);
 		text-align: center;
 		align-self: center;
 		font-family: 'Teko',sans-serif;
@@ -46,24 +49,26 @@ body, html {
 	}
 
 	&_header {
+		z-index: var(--zIndexHeader);
 		grid-area: page;
 		display:none;
 	}
 	
 	&_footer {
+		z-index: var(--zIndexFooter);
 		grid-area: page;
 		display:none;
 	}
 
 	&_sidePanel {
-		grid-area: sidebar;
 		display: grid;
 		grid-template-rows: auto 10px min-content;
 		grid-template-areas: "navpanel" "." "legalpanel";
+		z-index: var(--zIndexSidePanel);
 
 		position:fixed;
 		top: 150px;
-		left: calc(50vw + 250px);
+		right: calc(50vw - 510px);
 		box-sizing: border-box;
 		width : 250px;
 		height: calc(100vh - 200px);

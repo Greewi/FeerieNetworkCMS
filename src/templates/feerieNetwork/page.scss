@@ -5,10 +5,11 @@ body {
 }
 
 .page {
+	z-index: var(--zIndexPage);
 	box-sizing: border-box;
 	width: 100%;
 	height: 100%;
-	padding: 0px 10px 20px 10px;
+	padding: 0px 10px 80px 10px;
 	overflow-x: hidden;
 	overflow-y: auto;
 	border: solid 5px var(--pageBorderColor);
@@ -83,7 +84,7 @@ body {
 		padding-bottom: 0;
 		margin-left: -5px;
 		margin-right: -5px;
-		margin-bottom: 0;
+		margin-bottom: 1rem;
 		border: solid 2px var(--asideBorderColor);
 		border-radius: 15px;
 		background: var(--asideBackgroundColor);
@@ -135,8 +136,41 @@ body {
 			opacity : 0.4;
 			font-size: 0.7rem;
 		}
+
+		&.media {
+			filter: none;
+		}
+
+		img {
+			filter: none;
+			transition-property: opacity;
+			transition-duration: 400ms;
+
+			&:hover {
+				opacity : 0.8;
+			}
+		}
 	}
 
+	.iconArray {
+		p {
+			display: flex;
+			width: 100%;
+			gap: 15px;
+			flex-wrap: wrap;
+			justify-content: center;
+		}
+
+		a {
+			min-width: 128px;
+			max-width: 30%;
+		}
+
+		img {
+			border-radius: 15%;
+			box-shadow: 1px 2px 8px rgba(0, 0, 0, 1);
+		}
+	}
 }
 
 .button {
