@@ -27,7 +27,7 @@ export class Navigatron {
 	 */
 	async initializeCurrentURL() {
 		let url = decodeURI(window.location.pathname);
-		this.openLink(url, "INIT");
+		await this.openLink(url, "INIT");
 	}
 
 	/**
@@ -37,6 +37,8 @@ export class Navigatron {
 	 * @param {boolean} pushState if set to true the new url will be push into the history (default to true).
 	 */
 	async openLink(url, animation, pushState = true) {
+		if(url[0]!="/")
+			url = "/" + url;
 		if(this._lockInteraction)
 			return;
 		if(url.includes("#")) {

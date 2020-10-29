@@ -4,6 +4,7 @@
 export class MainUI {
 	constructor() {
 		this._title = document.getElementById("mainUI_title");
+		this._overlayLoading = document.getElementById("mainUI_overlayLoading");
 		this._pageContainer = document.getElementById("mainUI_pageContainer");
 		this._navPanel = document.getElementById("mainUI_navPanel");
 		this._sidePanel = document.getElementById("mainUI_sidePanel");
@@ -28,6 +29,10 @@ export class MainUI {
 		this.listenBackButton(null);
 		this.listenLeftButton(null);
 		this.listenRightButton(null);
+	}
+
+	fadeLoadingOverlay() {
+		this._overlayLoading.classList.add("mainUI_overlayLoading_off");
 	}
 
 	setTitle(title) {

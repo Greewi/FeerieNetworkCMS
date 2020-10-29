@@ -1,5 +1,8 @@
 export class InternalURL {
 	constructor(url, sitemap) {
+		if(url[0]!="/")
+			url = "/"+url;
+
 		this._url = url;
 		this._sitemap = sitemap;
 
@@ -15,7 +18,7 @@ export class InternalURL {
 		if(this._ancestors.length > 0)
 			this._parent = this._ancestors[0];
 		else
-		this._parent = null;
+			this._parent = null;
 		this._ancestors.reverse();
 
 		// children & siblings
@@ -55,7 +58,7 @@ export class InternalURL {
 	_buildRegExpIsChildOf(url) {
 		if(url == "/")
 			return new RegExp('^\/[^\/]+$');
-		return new RegExp('^'+url.replace('/','\\/') +'\/[^\/]+$');
+		return new RegExp('^'+url.replace(/\//g,'\\/') +'\/[^\/]+$');
 	}
 
 	_buildRegExpIsSiblingOf(url, parentUrl) {
@@ -63,7 +66,7 @@ export class InternalURL {
 			return  new RegExp('^\/$');
 		if(parentUrl == "/")
 			return new RegExp('^\/[^\/]+$');
-		return new RegExp('^'+parentUrl.replace('/','\\/') +'\/[^\/]+$');
+		return new RegExp('^'+parentUrl.replace(/\//g,'\\/') +'\/[^\/]+$');
 	}
 
 	_getCommonAncestor(url1, url2) {

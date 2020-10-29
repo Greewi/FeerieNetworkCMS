@@ -1,0 +1,16 @@
+.mainUI_overlayLoading {
+	position: fixed;
+	z-index: var(--zIndexLoader);
+	top:0;
+	left:0;
+	right: 0;
+	bottom: 0;
+	background: #000;
+	opacity: 1;
+	transition: opacity 250ms linear 500ms;
+
+	&_off {
+		opacity: 0;
+		pointer-events: none;
+	}
+}

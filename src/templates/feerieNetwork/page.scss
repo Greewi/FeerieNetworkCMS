@@ -107,7 +107,8 @@ body {
 		border-radius: 3px;
 
 		&.image_center {
-			justify-self: center;
+			display: block;
+			margin: auto;
 		}
 		&.image_left {
 			float: left;
