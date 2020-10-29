@@ -1,3 +1,4 @@
+import { InternalURL } from "./InternalURL";
 import { Article } from "./pages/Article";
 import { ErrorPage } from "./pages/Error";
 
@@ -18,13 +19,15 @@ export class Navigatron {
 		this._lockInteraction = false;
 		window.onpopstate = (event) => this._onHistoryPopState(event);
 		window.openLink = (url) => this.openLink(url, "CHILD");
+		mainUI.setTitle(this._sitemap.sitename);
 	}
 
 	/**
 	 * Load the initial page by using the browser url
 	 */
 	async initializeCurrentURL() {
-		this.openLink(window.location.pathname, "INIT");
+		let url = decodeURI(window.location.pathname);
+		this.openLink(url, "INIT");
 	}
 
 	/**
@@ -109,44 +112,52 @@ export class Navigatron {
 			return;
 		}
 
-		let currentUrl = this._pageActuelle.getUrl();
+		let internalUrl = new InternalURL(this._pageActuelle.getUrl(), this._sitemap)
+
+		console.log(internalUrl);
 
 		// Parents
-		this._addParentPageNavElement(currentUrl);
+		for(let url of internalUrl.getAncestors())
+			if(this._sitemap.map[url])
+				this._addNavElement(this._sitemap.map[url].title, "navButton_parent", "<", url, "PARENT");
 
 		// Current page
-		this._addCurrentPageNavElement();
-
+		this._addNavElement(this._pageActuelle.getTitle(), "navButton_current", "#", this._pageActuelle.getUrl()+"#TOP", "SAMEPAGE");
+	
 		// Childrens
-		let regexp = currentUrl!="/" 
-			? new RegExp('^'+currentUrl.replace('/','\\/') +'\/[^\/]+$') 
-			: new RegExp('^\/[^\/]+$') ;
-		for(let url in this._sitemap.map) {
-			if(url.match(regexp)) {
-				this._addChildPageNavElement(url, this._pageActuelle);
+		for(let url of internalUrl.getChildren()) {
+			if(this._sitemap.map[url])
+				this._addNavElement(this._sitemap.map[url].title, "navButton_child", ">", url, "CHILD");
+			if(this._pageActuelle && !this._sitemap.map[this._pageActuelle.getUrl()].notoc) {
+				let tocButton = document.createElement("button");
+				tocButton.className = "button button_navButton";
+				tocButton.innerHTML = this._sitemap.map[url].title;
+				tocButton.onclick = () => this.openLink(url, "CHILD");
+				this._pageActuelle.appendToCButton(tocButton);
 			}
 		}
 
 		// Page headings
 		for(let heading of this._pageActuelle.getHeadings())
-			this._addHeadingNavElement(heading.title, heading.anchor);
-	}
+			this._addNavElement(heading.title, "navButton_heading", "§", this._pageActuelle.getUrl()+"#"+heading.anchor, "SAMEPAGE");
 
-	_addParentPageNavElement(url) {
-		if(url=="" || url=="/")
-			return;
-		url = url.replace(/(\/[^\/]*)$/gm, ""); // Getting parent URL
-		this._addParentPageNavElement(url); // Adding parent's parents first
+		// Parent buttons
+		if(internalUrl.getUrl()!="/")
+			this._mainUI.listenBackButton(()=>{this.openLink(internalUrl.getParent(), "PARENT")})
+		else
+			this._mainUI.listenBackButton(null)
 
-		if(url=="")
-			url="/";
+		// Previous button
+		if(internalUrl.getPrevious())
+			this._mainUI.listenLeftButton(()=>{this.openLink(internalUrl.getPrevious(), "LEFT")})
+		else
+			this._mainUI.listenLeftButton(null)
 
-		if(this._sitemap.map[url])
-			this._addNavElement(this._sitemap.map[url].title, "navButton_parent", "<", url, "PARENT");
-	}
-
-	_addCurrentPageNavElement() {
-		this._addNavElement(this._pageActuelle.getTitle(), "navButton_current", "#", this._pageActuelle.getUrl()+"#TOP", "SAMEPAGE");
+		// Next Button
+		if(internalUrl.getNext())
+			this._mainUI.listenRightButton(()=>{this.openLink(internalUrl.getNext(), "RIGHT")})
+		else
+			this._mainUI.listenRightButton(null)
 	}
 
 	_addChildPageNavElement(url, page) {

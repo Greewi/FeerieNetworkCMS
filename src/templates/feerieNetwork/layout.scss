@@ -56,8 +56,13 @@ body, html {
 	
 	&_footer {
 		z-index: var(--zIndexFooter);
-		grid-area: page;
-		display:none;
+		position: fixed;
+		bottom: 5px;
+		right: calc(50% - 225px);
+		width: max-content;
+		height: min-content;
+		align-self: flex-end;
+		justify-self: right;
 	}
 
 	&_sidePanel {
@@ -68,7 +73,7 @@ body, html {
 
 		position:fixed;
 		top: 150px;
-		right: calc(50vw - 510px);
+		right: calc(50% - 510px);
 		box-sizing: border-box;
 		width : 250px;
 		height: calc(100vh - 200px);

@@ -27,7 +27,6 @@ export class Page {
 	}
 
 	async open(mainUI, animation) {
-		mainUI.setTitle(this._data.title);
 		mainUI.addPageElement(this._element);
 	}
 

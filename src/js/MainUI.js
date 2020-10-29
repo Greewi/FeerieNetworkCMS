@@ -8,8 +8,12 @@ export class MainUI {
 		this._navPanel = document.getElementById("mainUI_navPanel");
 		this._sidePanel = document.getElementById("mainUI_sidePanel");
 		this._sidePanelOverlay = document.getElementById("mainUI_overlaySidePanel");
-		this._sidePanelOpenButton = document.getElementById("button_openSidePanel");
-		this._sidePanelOpenButton.onclick = () => {
+		this._buttonOpenSidePanel = document.getElementById("button_openSidePanel");
+		this._buttonBack = document.getElementById("button_back");
+		this._buttonLeft = document.getElementById("button_left");
+		this._buttonRight = document.getElementById("button_right");
+
+		this._buttonOpenSidePanel.onclick = () => {
 			this._sidePanel.classList.toggle("mainUI_sidePanel_opened");
 			this._sidePanelOverlay.classList.toggle("mainUI_overlaySidePanel_opened");
 		}
@@ -17,10 +21,21 @@ export class MainUI {
 			this._sidePanel.classList.remove("mainUI_sidePanel_opened");
 			this._sidePanelOverlay.classList.remove("mainUI_overlaySidePanel_opened");
 		}
+
+		this._buttonBack = document.getElementById("button_back");
+		this._buttonLeft = document.getElementById("button_left");
+		this._buttonRight = document.getElementById("button_right");
+		this.listenBackButton(null);
+		this.listenLeftButton(null);
+		this.listenRightButton(null);
 	}
 
 	setTitle(title) {
 		this._title.innerHTML = title;
+	}
+
+	setTheme(theme) {
+		document.body.className = theme;
 	}
 
 	addPageElement(page) {
@@ -39,7 +54,18 @@ export class MainUI {
 		this._navPanel.appendChild(element);
 	}
 
-	setTheme(theme) {
-		document.body.className = theme;
+	listenLeftButton(callback) {
+		this._buttonLeft.onclick = callback;
+		this._buttonLeft.disabled = !callback;
+	}
+
+	listenRightButton(callback) {
+		this._buttonRight.onclick = callback;
+		this._buttonRight.disabled = !callback;
+	}
+
+	listenBackButton(callback) {
+		this._buttonBack.onclick = callback;
+		this._buttonBack.disabled = !callback;
 	}
 }
