@@ -1,37 +1,34 @@
+.button_openSidePanel {
+	display: none;
+}
+
 @media screen and (max-width: 1024px) {
 	.mainUI {
 		&_mainContainer {
 			grid-template-columns: 1fr 736px 1fr;
-			grid-template-rows: 150px auto;
+			grid-template-rows: 100px 1fr;
 			grid-template-areas: ". title ." ". page .";
 		}
 
 		&_sidePanel {
-			top : calc(150px + 3.5rem);
-			right : calc(50vw - 376px);
-			bottom: -5px;
-			height: auto;
+			grid-area: page;
+			margin-top: 3.5rem;
+			width: 250px;
+			justify-self: end;
 
 			transform: translateX(100%);
+			pointer-events: none;
 			opacity: 0;
 			transition: transform 200ms ease-out 0ms, opacity 200ms linear 0ms;
 
 			&_opened {
 				transform: translateX(0);
+				pointer-events: all;
 				opacity: 1;
 			}
 		}
 
 		&_overlaySidePanel {
-			position: absolute;
-			top:0;
-			bottom:0;
-			left:0;
-			right:0;
-			background: rgba(0, 0, 0, 0.6);
-
-			pointer-events: none;
-			opacity: 0;
 			transition: opacity 200ms linear 0ms;
 
 			&_opened {
@@ -39,99 +36,38 @@
 				opacity: 1;
 			}
 		}
-
-		&_header {
-			display: grid;
-			height: calc(3.5rem + 5px);
-		}
-
-		&_footer {
-			right: calc(50vw - 368px);
-		}
 	}
 
 	.button_openSidePanel {
 		display: inline-block;
-		justify-self: right;
-		width: calc(3.5rem - 10px);
-		height: calc(3.5rem - 10px);
-		margin-top:10px;
-		margin-right:10px;
-	}
-
-	.button_icon_openSidePanel {
-		background: url(images/icone_menu.png);
-		background-size: contain;
 	}
 }
 
 @media screen and (max-width: 750px) {
 	.mainUI {
-
 		&_title {
 			display: none;
 		}
 
 		&_mainContainer {
-			grid-template-columns: auto;
-			grid-template-rows: 0px auto;
+			grid-template-columns: 1fr;
+			grid-template-rows: 0px 1fr;
 			grid-template-areas: "title" "page";
 		}
 
 		&_sidePanel {
-			top : calc(3.5rem - 5px);
-			right : -5px;
-			bottom: -5px;
-			width: 80vw;
-			height: auto;
-
-			transform: translateX(100%);
-			opacity: 0;
-			transition: transform 200ms ease-out 0ms, opacity 200ms linear 0ms;
-
-			&_opened {
-				transform: translateX(0);
-				opacity: 1;
-			}
+			width: 80%;
+			margin-top: calc(3.5rem - 5px);
 		}
 
 		&_header {
-			position: fixed;
-			top: 0;
-			left: 0;
-			display: grid;
-			height: 3.5rem;
 			width: 100%;
-		}
-
-		&_footer {
-			right: 0;
-		}
-	}
-
-	.page {
-		h1 {
-			z-index: var(--zIndexHeader);
-			position: fixed;
-			top: 0;
-			padding-left: 10px;
-			padding-right: calc(3.5rem + 10px);
-			box-sizing: border-box;
-			width: 100vw;
-			height: 3.5rem;
-			white-space: nowrap;
-			text-overflow: ellipsis;
-			overflow: hidden;
+			margin: 0;
 		}
 	}
 
 	.page {
 		border: none;
 		border-radius: 0px;
-		padding-top: 4rem;
-	}
-
-	.button_openSidePanel {
-		margin:5px;
 	}
 }

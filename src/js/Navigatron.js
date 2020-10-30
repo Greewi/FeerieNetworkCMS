@@ -56,13 +56,15 @@ export class Navigatron {
 			let page = this._createPage(url, data);
 
 			if(this._pageActuelle)
-				await this._pageActuelle.close(this._mainUI, animation);
+				this._pageActuelle.close(this._mainUI, animation);
 			document.documentElement.scrollTop = 0;
 			this._pageActuelle = page;
 			this._updateNavigation();
 			this._updateTheme(url);
-			if(this._pageActuelle)
-				await this._pageActuelle.open(this._mainUI, animation);
+			if(this._pageActuelle) {
+				this._mainUI.setSubtitle(this._pageActuelle.getTitle());
+				this._pageActuelle.open(this._mainUI, animation);
+			}
 			if(pushState)
 				history.pushState({url:url, animation:"INIT"}, "", url);
 		} finally {

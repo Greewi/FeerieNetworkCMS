@@ -1,3 +1,19 @@
+* {
+	scrollbar-width: thin;
+	scrollbar-color: var(--quoteBackgroundColor) var(--pageBackgroundColor);
+}
+*::-webkit-scrollbar {
+	width: 6px;
+}
+*::-webkit-scrollbar-track {
+	background: var(--pageBackgroundColor);
+}
+*::-webkit-scrollbar-thumb {
+	background-color: var(--quoteBackgroundColor);
+	border-radius: 2px;
+	border: 1px solid var(--pageBackgroundColor);
+}
+
 body, html {
 	margin: 0;
 	padding: 0;
@@ -6,36 +22,38 @@ body, html {
 .mainUI {
 
 	&_background {
-		position: fixed;
+		position: absolute;
 		z-index: var(--zIndexBackround);
-		width:100%;
-		max-width: 100vw;
-		height: 100vh;
 		top: 0;
-		left:0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+
 		background: var(--generalBackground);
 		background-size: cover;
 	}
 
 	&_mainContainer {
 		position: absolute;
-		z-index: 10;
-		width: 100%;
-		max-width: 100vw;
-		height: 100vh;
 		top: 0;
-		left:0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+
 		display: grid;
 		grid-template-columns: 1fr 735px 15px 250px 1fr;
-		grid-template-rows: 150px auto;
-		grid-template-areas: ". title title title ." ". page . sidebar .";
+		grid-template-rows: 100px auto 50px;
+		grid-template-areas: ". title title title ." ". page . sidebar ."  ". page . . .";
+		overflow: hidden;
 	}
 
 	&_title {
 		grid-area: title;
 		z-index: var(--zIndexTitle);
+		margin-top: 1rem;
+
+		align-self: start;
 		text-align: center;
-		align-self: center;
 		font-family: 'Teko',sans-serif;
 		font-weight: 700;
 		font-size: 5rem;
@@ -46,62 +64,107 @@ body, html {
 
 	&_pageContainer {
 		grid-area: page;
+		position: relative;
+		perspective: 100vw;
+		perspective-origin: 50% 50vw;
 	}
 
 	&_header {
-		z-index: var(--zIndexHeader);
 		grid-area: page;
-		display:none;
+		z-index: var(--zIndexHeader);
+		box-sizing: border-box;
+		width: calc(100% - 10px);
+		height: 3.5rem;
+		align-self: start;
+		justify-self: end;
+		margin:5px;
+
+		display:grid;
+		grid-template-columns: 1fr min-content;
+		grid-template-rows: 1fr;
+		grid-template-areas: "title buttons";
+		overflow: hidden;
+
+		background: var(--h1BackgroundColor);
+
+		&_title {
+			padding: 0.5rem;
+			height: 2.5rem;
+
+			color: var(--h1TextColor);
+			font-family: 'Teko', sans-serif;
+			font-weight: 700;
+			font-size: 2rem;
+			text-align: center;
+		}
+
+		will-change: transform;
 	}
 	
 	&_footer {
+		grid-area: page;
 		z-index: var(--zIndexFooter);
-		position: fixed;
-		bottom: 5px;
-		right: calc(50% - 225px);
+		box-sizing: border-box;
 		width: max-content;
-		height: min-content;
-		align-self: flex-end;
-		justify-self: right;
+		height: 3.5rem;
+		align-self: end;
+		justify-self: end;
+		margin: 5px;
+
+		will-change: transform;
+	}
+
+	&_overlaySidePanel {
+		position: absolute;
+		z-index: var(--zIndexSidePanel);
+		top:0;
+		bottom:0;
+		left:0;
+		right:0;
+		background: rgba(0, 0, 0, 0.6);
+
+		pointer-events: none;
+		opacity: 0;
+
+		will-change: transform;
 	}
 
 	&_sidePanel {
-		display: grid;
-		grid-template-rows: auto 10px min-content;
-		grid-template-areas: "navpanel" "." "legalpanel";
+		grid-area: sidebar;
 		z-index: var(--zIndexSidePanel);
-
-		position:fixed;
-		top: 150px;
-		right: calc(50% - 510px);
+		display: grid;
+		grid-template-rows: auto min-content;
+		grid-template-areas: "navpanel" "legalpanel";
+		row-gap: 10px;
 		box-sizing: border-box;
-		width : 250px;
-		height: calc(100vh - 200px);
-		padding: 20px 10px 10px 10px;
+		padding: 0;
+		overflow-x: hidden;
+		overflow-y: auto;
+
 		border: solid 5px var(--pageBorderColor);
 		border-radius: 5px;
 		background: var(--pageBackgroundColor);
 		background-clip: padding-box;
 		color : var(--pageTextColor);
+
+		will-change: transform;
 	}
 
 	&_navPanel {
 		grid-row: navpanel;
+		box-sizing: border-box;
 		height: 100%;
+		overflow-x: hidden;
 		overflow-y: auto;
+		padding: 10px;
 	}
 
 	&_legalPanel {
 		grid-row: legalpanel;
+		padding: 10px;
 	}
 
 	&_popupContainer {
 		display: none;
 	}
-}
-
-.page {
-	width : 100%;
-	height: 100%;
-	background: #FFF;
 }

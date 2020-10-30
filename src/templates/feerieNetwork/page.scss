@@ -5,11 +5,17 @@ body {
 }
 
 .page {
+	--pageMargin : 1rem;
+	--pageMarginNeg : -1rem;
+	--pageHalfMargin : .5rem;
+	--pageHalfMarginNeg : -.5rem;
+
 	z-index: var(--zIndexPage);
+	position: absolute;
 	box-sizing: border-box;
 	width: 100%;
 	height: 100%;
-	padding: 0px 10px 80px 10px;
+	padding: 0px var(--pageMargin) 3rem var(--pageMargin);
 	overflow-x: hidden;
 	overflow-y: auto;
 	border: solid 5px var(--pageBorderColor);
@@ -18,8 +24,10 @@ body {
 	background-clip: padding-box;
 	color : var(--pageTextColor);
 
+	will-change: transform;
+
 	h1 {
-		margin: 0 -10px 1rem -10px;
+		margin: 0 var(--pageMarginNeg) 1rem var(--pageMarginNeg);
 		padding: 0.5rem;
 		height: 2.5rem;
 		box-sizing: content-box;
@@ -70,8 +78,8 @@ body {
 	}
 
 	blockquote {
-		margin: -1rem -10px 1rem -10px;
-		padding: 1rem calc(10px + 3rem) 1rem calc(10px + 3rem);
+		margin: -1rem var(--pageMarginNeg) 1rem var(--pageMarginNeg);
+		padding: 1rem calc(3rem + var(--pageMargin)) 1rem calc(3rem + var(--pageMargin));
 		color: var(--quoteTextColor);
 		background: var(--quoteBackgroundColor);
 		font-size: 1rem;
@@ -80,10 +88,10 @@ body {
 
 	aside {
 		box-sizing: border-box;
-		padding: calc(1rem - 2px + 5px);
+		padding: calc(1rem - 2px + var(--pageHalfMargin));
 		padding-bottom: 0;
-		margin-left: -5px;
-		margin-right: -5px;
+		margin-left: var(--pageHalfMarginNeg);
+		margin-right: var(--pageHalfMarginNeg);
 		margin-bottom: 1rem;
 		border: solid 2px var(--asideBorderColor);
 		border-radius: 15px;
@@ -155,21 +163,137 @@ body {
 
 	.iconArray {
 		p {
-			display: flex;
-			width: 100%;
-			gap: 15px;
+			display: grid;
 			flex-wrap: wrap;
-			justify-content: center;
-		}
-
-		a {
-			min-width: 128px;
-			max-width: 30%;
+			grid-template-columns: 1fr 1fr 1fr;
+			gap: 1rem;
 		}
 
 		img {
 			border-radius: 15%;
 			box-shadow: 1px 2px 8px rgba(0, 0, 0, 1);
 		}
+	}
+
+
+	@keyframes from_left {
+		from {
+			transform: translateX(-100%);
+			opacity: 0;
+		}
+		to {
+			transform: translateX(0);
+			opacity: 1;
+		}
+	}
+
+	@keyframes from_right {
+		from {
+			transform: translateX(100%);
+			opacity: 0;
+		}
+		to {
+			transform: translateX(0);
+			opacity: 1;
+		}
+	}
+
+	@keyframes from_front {
+		from {
+			transform: translateZ(10vw);
+			opacity: 0;
+		}
+		to {
+			transform: translateZ(0);
+			opacity: 1;
+		}
+	}
+
+	@keyframes from_back {
+		from {
+			transform: translateZ(-10vw);
+			opacity: 0;
+		}
+		to {
+			transform: translateZ(0);
+			opacity: 1;
+		}
+	}
+
+	@keyframes to_left {
+		from {
+			transform: translateX(0);
+			opacity: 1;
+		}
+		to {
+			transform: translateX(-100%);
+			opacity: 0;
+		}
+	}
+
+	@keyframes to_right {
+		from {
+			transform: translateX(0);
+			opacity: 1;
+		}
+		to {
+			transform: translateX(100%);
+			opacity: 0;
+		}
+	}
+
+	@keyframes to_front {
+		from {
+			transform: translateZ(0);
+			opacity: 1;
+		}
+		to {
+			transform: translateZ(10vw);
+			opacity: 0;
+		}
+	}
+
+	@keyframes to_back {
+		from {
+			transform: translateZ(0);
+			opacity: 1;
+		}
+		to {
+			transform: translateZ(-10vw);
+			opacity: 0;
+		}
+	}
+
+	&_open_right {
+		animation-name: from_right;
+		animation-duration: 500ms;
+	}
+	&_close_right {
+		animation-name: to_left;
+		animation-duration: 500ms;
+	}
+	&_open_left {
+		animation-name: from_left;
+		animation-duration: 500ms;
+	}
+	&_close_left {
+		animation-name: to_right;
+		animation-duration: 500ms;
+	}
+	&_open_child {
+		animation-name: from_front;
+		animation-duration: 500ms;
+	}
+	&_close_child {
+		animation-name: to_back;
+		animation-duration: 500ms;
+	}
+	&_open_parent {
+		animation-name: from_back;
+		animation-duration: 500ms;
+	}
+	&_close_parent {
+		animation-name: to_front;
+		animation-duration: 500ms;
 	}
 }

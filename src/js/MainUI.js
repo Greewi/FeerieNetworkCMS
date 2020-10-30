@@ -4,6 +4,7 @@
 export class MainUI {
 	constructor() {
 		this._title = document.getElementById("mainUI_title");
+		this._subTitle = document.getElementById("mainUI_header_title");
 		this._overlayLoading = document.getElementById("mainUI_overlayLoading");
 		this._pageContainer = document.getElementById("mainUI_pageContainer");
 		this._navPanel = document.getElementById("mainUI_navPanel");
@@ -37,6 +38,10 @@ export class MainUI {
 
 	setTitle(title) {
 		this._title.innerHTML = title;
+	}
+
+	setSubtitle(title) {
+		this._subTitle.innerHTML = title;
 	}
 
 	setTheme(theme) {

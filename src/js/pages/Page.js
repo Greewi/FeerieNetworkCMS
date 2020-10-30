@@ -28,9 +28,30 @@ export class Page {
 
 	async open(mainUI, animation) {
 		mainUI.addPageElement(this._element);
+		await this._animation(animation, "open");
 	}
 
 	async close(mainUI, animation) {
+		await this._animation(animation, "close");
 		mainUI.removePageElement(this._element);
 	}
+
+	/**
+	 * 
+	 * @param {string} animation 
+	 * @param {string} action 
+	 */
+	async _animation(animation, action) {
+		if(animation == "INIT" || animation == "SAMEPAGE")
+			return;
+		return new Promise((resolve)=> {
+			const onAnimationEnd = () => {
+				this._element.removeEventListener("animationend", onAnimationEnd);
+				resolve();
+			};
+			this._element.addEventListener("animationend", onAnimationEnd);
+			this._element.className = `page page_${action}_${animation.toLowerCase()}`;
+		});
+	}
+
 };
