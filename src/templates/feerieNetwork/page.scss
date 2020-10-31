@@ -26,6 +26,10 @@ body {
 
 	will-change: transform;
 
+	> :last-child {
+		margin-bottom: 4rem;
+	}
+
 	h1 {
 		margin: 0 var(--pageMarginNeg) 1rem var(--pageMarginNeg);
 		padding: 0.5rem;
