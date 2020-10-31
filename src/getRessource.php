@@ -9,6 +9,7 @@
 		"pdf" => "application/pdf",
 		"png" => "image/png",
 		"txt" => "text/plain",
+		"ico" => "image/image/x-icon",
 	);
 
 	function sendHTTPError($code, $text) {
