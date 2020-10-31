@@ -43,7 +43,7 @@ export class Navigatron {
 			return;
 		if(url.includes("#")) {
 			if(url.includes("#TOP"))
-				document.documentElement.scrollTop = 0;
+				this._pageActuelle.getElement().scrollTop=0;
 			else
 				document.location.hash = "#"+url.split("#")[1];
 			return;
@@ -117,8 +117,6 @@ export class Navigatron {
 		}
 
 		let internalUrl = new InternalURL(this._pageActuelle.getUrl(), this._sitemap)
-
-		console.log(internalUrl);
 
 		// Parents
 		for(let url of internalUrl.getAncestors())
