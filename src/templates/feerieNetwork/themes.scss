@@ -189,4 +189,41 @@ body {
 		--navButtonBorderColor: #3b3b3b;
 		--navButtonTextColor: #3b3b3b;
 	}
+
+	&.feerie {
+		/* General colors */
+		--generalBackground: url(images/bg_feerie.jpg) #000;
+		--titleTextColor: rgba(255, 255, 255, 0.900);
+		--titleGlowColor: #ac30e5;
+		--buttonBackgroundColor: linear-gradient(160deg, #ac30e5 0%,#7128a1 100%);
+		--buttonTextColor: rgb(255, 255, 255);
+		--badButtonBackgroundColor: linear-gradient(160deg, #d12c2c 0%,#7c1b1b 100%);
+		--badButtonTextColor: rgb(255, 255, 255);
+
+		/* page */
+		--pageBackgroundColor: rgba(255, 255, 255, 0.800);
+		--pageTextColor: rgb(36, 36, 36);
+		--pageBorderColor: rgba(73, 29, 99, 0.329);
+		--h1BackgroundColor: linear-gradient(160deg, #785499 0%,#590055 100%);
+		--h1TextColor: rgb(255, 255, 255);
+		--h2TextColor: rgb(73, 29, 99);
+		--h2BorderColor: rgb(73, 29, 99);
+		--quoteTextColor: rgb(36, 36, 36);
+		--quoteBackgroundColor: rgba(73, 29, 99, 0.329);
+		--asideBorderColor: rgb(73, 29, 99);
+		--asideBackgroundColor: rgba(255, 255, 255, 0.418);
+		--linkTextColor: rgb(73, 29, 99);
+		--linkGlowColor: #ac30e5;
+
+		/* nav */
+		--navButtonBackgroundColor: linear-gradient(160deg, #ffffff 0%,#dcf1ff 100%);
+		--navButtonBorderColor: rgb(57, 17, 80);
+		--navButtonTextColor: rgb(57, 17, 80);
+
+		.mainUI_background {
+			background-size: contain;
+			background-position: center center;
+			background-repeat: no-repeat;
+		}
+	}
 }
