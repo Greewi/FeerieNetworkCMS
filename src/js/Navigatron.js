@@ -179,9 +179,13 @@ export class Navigatron {
 	}
 
 	_addNavElement(title, cssClass, iconSymbol, url, animation) {
-		let button = document.createElement("div");
+		let button = document.createElement("a");
+		button.href = url;
 		button.className = "navButton " + cssClass;
-		button.onclick = () => this.openLink(url, animation);
+		button.onclick = (event) => {
+			this.openLink(url, animation);
+			event.preventDefault();
+		};
 
 		let icon = document.createElement("div");
 		icon.className = "navButton_icon";
