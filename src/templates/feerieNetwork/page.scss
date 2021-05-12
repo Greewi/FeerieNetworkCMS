@@ -156,6 +156,10 @@ body {
 			filter: none;
 		}
 
+		&.media.external::after {
+			content: none;
+		}
+
 		img {
 			filter: none;
 			transition-property: opacity;
