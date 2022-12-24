@@ -1,5 +1,10 @@
 <?php
 
+if(substr(explode('?', $_SERVER['REQUEST_URI'])[0], -4) != ".php") {
+    require_once "index.php";
+    die();
+}
+
 require_once "php/Sitemap.php";
 require_once "php/SearchIndex.php";
 

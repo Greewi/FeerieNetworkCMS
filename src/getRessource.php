@@ -1,4 +1,10 @@
 <?php
+
+	if(substr(explode('?', $_SERVER['REQUEST_URI'])[0], -4) != ".php") {
+		require_once "index.php";
+		die();
+	}
+
 	$mimetypes = array(
 		"epub" => "application/epub+zip",
 		"gif" => "image/gif",
