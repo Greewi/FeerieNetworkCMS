@@ -11,6 +11,7 @@ export class MainUI {
 		this._sidePanel = document.getElementById("mainUI_sidePanel");
 		this._sidePanelOverlay = document.getElementById("mainUI_overlaySidePanel");
 		this._buttonOpenSidePanel = document.getElementById("button_openSidePanel");
+		this._buttonSearch = document.getElementById("button_search");
 		this._buttonBack = document.getElementById("button_back");
 		this._buttonLeft = document.getElementById("button_left");
 		this._buttonRight = document.getElementById("button_right");
@@ -77,5 +78,9 @@ export class MainUI {
 	listenBackButton(callback) {
 		this._buttonBack.onclick = callback;
 		this._buttonBack.disabled = !callback;
+	}
+
+	listenSearchButton(callback) {
+		this._buttonSearch.onclick = callback;
 	}
 }

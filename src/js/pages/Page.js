@@ -1,7 +1,8 @@
 export class Page {
-	constructor(url, data) {
+	constructor(url, data, navigatron) {
 		this._url = url;
 		this._data = data;
+		this._navigatron = navigatron;
 		this._element = document.createElement("div");
 		this._element.className = "page";
 	}
@@ -54,4 +55,7 @@ export class Page {
 		});
 	}
 
+	async openInternalLink(url) {
+		this._navigatron.openLink(url, "CHILD");
+	}
 };

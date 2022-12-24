@@ -1,0 +1,28 @@
+.searchPage {
+
+	&_form {
+		display: grid;
+		grid-template-columns: 1fr auto;
+		column-gap: 20px;
+
+		box-sizing: border-box;
+		padding: calc(1rem - 2px + var(--pageHalfMargin));
+		margin-left: var(--pageHalfMarginNeg);
+		margin-right: var(--pageHalfMarginNeg);
+		margin-bottom: 1rem;
+		border: solid 2px var(--asideBorderColor);
+		border-radius: 15px;
+		background: var(--asideBackgroundColor);
+	}
+
+	&_results {
+		display: none;
+		&_visible {
+			display: block;
+		}
+
+		&_relevance {
+			font-style: italic;
+		}
+	}
+}

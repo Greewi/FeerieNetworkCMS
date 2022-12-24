@@ -82,6 +82,18 @@
 	}
 }
 
+.button_search {
+	display: inline-block;
+	width: calc(3.5rem - 10px);
+	height: calc(3.5rem - 10px);
+	margin: 5px;
+	justify-self: right;
+
+	.button_icon_search {
+		background-image: url(images/icon_search.png);
+	}
+}
+
 .button_left {
 	display: inline-block;
 	width: calc(3.5rem - 10px);

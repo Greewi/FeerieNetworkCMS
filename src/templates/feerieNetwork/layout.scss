@@ -80,7 +80,7 @@ body, html {
 		margin:5px;
 
 		display:grid;
-		grid-template-columns: 1fr min-content;
+		grid-template-columns: 1fr auto;
 		grid-template-rows: 1fr;
 		grid-template-areas: "title buttons";
 		overflow: hidden;

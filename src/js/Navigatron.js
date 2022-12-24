@@ -1,6 +1,7 @@
 import { InternalURL } from "./InternalURL";
 import { Article } from "./pages/Article";
 import { ErrorPage } from "./pages/Error";
+import { SearchPage } from "./pages/SearchPage";
 
 /**
  * This class is responsible for all navigation operations
@@ -20,6 +21,7 @@ export class Navigatron {
 		window.onpopstate = (event) => this._onHistoryPopState(event);
 		window.openLink = (url) => this.openLink(url, "CHILD");
 		mainUI.setTitle(this._sitemap.sitename);
+		mainUI.listenSearchButton(()=>this.openLink("/search", "CHILD"));
 	}
 
 	/**
@@ -100,9 +102,11 @@ export class Navigatron {
 	_createPage(url, data) {
 		let page = null;
 		if(data.type=="article")
-			page = new Article(url, data);
+			page = new Article(url, data, this);
+		else if(data.type=="search")
+			page = new SearchPage(url, data, this);
 		else if(data.type=="error")
-			page = new ErrorPage(url, data);
+			page = new ErrorPage(url, data, this);
 		return page;
 	}
 

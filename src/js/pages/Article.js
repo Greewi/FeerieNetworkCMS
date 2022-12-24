@@ -1,8 +1,8 @@
 import { Page } from "./Page";
 
 export class Article extends Page {
-	constructor(url, data) {
-		super(url, data);
+	constructor(url, data, navigatron) {
+		super(url, data, navigatron);
 		this.getElement().innerHTML = data.content.html;
 		// Générating headers
 		this._headings = [];
