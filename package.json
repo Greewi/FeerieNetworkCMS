@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/Greewi/FeerieNetworkCMS/issues"
   },
-  "homepage": "https://github.com/Greewi/FeerieNetworkCMS#readme"
+  "homepage": "https://github.com/Greewi/FeerieNetworkCMS#readme",
+  "devDependencies": {
+    "sass": "^1.57.1"
+  }
 }
