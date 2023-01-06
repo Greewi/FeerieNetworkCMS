@@ -13,9 +13,10 @@ body {
 	z-index: var(--zIndexPage);
 	position: absolute;
 	box-sizing: border-box;
+	margin-top: 4.5rem;
 	width: 100%;
 	height: 100%;
-	padding: 0px var(--pageMargin) 3rem var(--pageMargin);
+	padding: 1rem var(--pageMargin) 3rem var(--pageMargin);
 	overflow-x: hidden;
 	overflow-y: auto;
 	border: solid 5px var(--pageBorderColor);

@@ -34,6 +34,11 @@ export class Article extends Page {
 		// Fixing linked image styles
 		for(let img of this.getElement().querySelectorAll("a > img"))
 			img.parentElement.classList.add("media");
+
+		// Removing first H1 (replace by the page's title)
+		const firstH1 = this.getElement().querySelector("h1");
+		if(firstH1)
+			firstH1.remove();
 	}
 
 	getHeadings() {
