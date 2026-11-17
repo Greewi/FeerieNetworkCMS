@@ -1,8 +1,8 @@
 # FeerieNetworkCMS
 The source for the Feerie.net site
 
-
 ## Data architecture
+
 Per site data has to be stored in the `data` folder. This folder contains :
 * `data/` the data root directory
 * `    sitemap.json` the json file that contains the site architecture information

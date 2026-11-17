@@ -21,4 +21,6 @@ if(trim($url)=="/search" || trim($url)=="/search/") {
 }
 
 header("Content-type: application/json; charset=utf-8");
+header('Cache-Control: max-age=43200');
+header('CDN-Cache-Control: max-age=43200');
 die(json_encode($content));
